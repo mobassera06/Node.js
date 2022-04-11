@@ -32,9 +32,43 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
     //     console.log(task)
     // })
 
-    db.collection('users').find({ age: 23 }).toArray((error, users) => {
-        console.log(users)
-    })
+
+    //querying docs
+//     db.collection('users').find({ age: 23 }).toArray((error, users) => {
+//         console.log(users)
+//     })
+
+// db.collection('count').find({ age: 23 }).count((error, count) => {
+//     console.log(count)
+// })
+
+
+//updating docs
+
+const updatePromise = db.collection('users').updateOne({
+    _id: new ObjectID("624fdde7f5a791f09959a395")
+}, {
+    $set: {
+        name: 'Mike'
+    }
+})
+
+updatePromise.then((result) => {
+    console.log(result)
+}).catch((error) => 
+{
+    console.log(error)
+})
+
+
+//deleting docs
+ db.collection('users').deleteMany({
+    age: 23
+}).then((result) => {
+console.log(result)
+}).catch((error) => {
+console.log(error)
+})
 })
 
 
@@ -54,8 +88,9 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
 
 
 
+
      // //insert a document to db
-//     db.collection('users').insertOne({
+//     db.collection('count').insertOne({
 //         id: id,
 //         name: 'Naaz',
 //         age: 23
