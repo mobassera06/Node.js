@@ -11,7 +11,7 @@ if(error) {
 console.log(result)
     })
 
-
+//use of promises with promise keyword
     const dowork = new Promise(( resolve, reject) => {
     setTimeout(() => {
         resolve([3, 4, 1])//either one

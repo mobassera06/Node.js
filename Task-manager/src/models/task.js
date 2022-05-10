@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
 const validator = require('validator')
-const Task = mongoose.model('Task', {
+
+//to take advantage of middleware,create the schema
+const taskSchema = new mongoose.Schema({
     desc: {
         type: String,
         required: true,
@@ -13,8 +15,23 @@ const Task = mongoose.model('Task', {
             if (value !== true) {
                 throw new Error('completed must be true')
             }
-        }
+        },
+    },
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
     }
-})
 
-module.exports = Task
+}, {
+    timestamps: true
+});
+taskSchema.pre("save", async function (next) {
+    const task = this;
+    
+    console.log('just before saving')
+    next()
+    })
+ const Task = mongoose.model("Task", taskSchema);
+
+module.exports = Task;

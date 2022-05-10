@@ -32,7 +32,16 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
     //     console.log(task)
     // })
 
-
+     //db.collection('users').insertOne({
+         //name: 'xyz';
+         //age: 22
+      //}, (err, result) => {
+          //if (err) {
+              //return console.log(result)
+          //}
+          //console,log(result)
+      //})
+     //})
     //querying docs
 //     db.collection('users').find({ age: 23 }).toArray((error, users) => {
 //         console.log(users)
